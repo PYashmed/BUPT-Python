@@ -1,2 +1,2 @@
 # BUPT-Python
-py&lt;3
+╧ьсзPYя╖о╟PY....
