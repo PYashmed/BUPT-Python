@@ -21,18 +21,15 @@ print(a)
 # ^ \ (when in the end) line continuation
 print("2222\
 2222")  # 22222222
-# ^ remove esc
-print(r"\n\t\\\a")  # \n\t\\\a
 
-
+# ^ \n line break
+print("111\n222")
 
 # ^modify upper case
 name = 'py PY pY'
 print(name.title())  # Py Py PY
 print(name.upper())  # PY PY PY
 print(name.lower())  # py py py
-
-
 
 # ^merge string
 a = 'py'
@@ -42,8 +39,6 @@ d = a+" "+b+" "+c
 print(d)  # py love lmc
 print(a.title()+" "+b+" "+c.title())  # Py love Lmc
 
-
-
 # ^Python can strip lead and trail space
 a = 'PY       '
 b = '       PY'
@@ -51,14 +46,17 @@ b = '       PY'
 print(a.rstrip())  # PY
 # ^lstrip---left strip ,strip the space in the front
 print(b.lstrip())  # PY
+
 # ^but this function just remove the spaces temporary
 b.lstrip()
 print(b)  # 'PY     '
+
 # ^to permanently remove the space ,it needs to be assigned to a variable
 c = b.lstrip()
 print(c)  # PY
 b = b.lstrip()
 print(b)  # PY
+
 # ^strip can remove the space both before and after
 c = '    PY    '
 print(c.strip()+'0')  # PY0
