@@ -229,7 +229,7 @@ traverse_seq([1, [1, 2], (1, 2), {1, 2}, {"key1": 1, "key2": 2}])
 
 ### 6.2.3 parameter passing
 
-#### (1) passed by position ( default )
+#### (1) Position pass ( default )
 
 The formal parameter is matched with the variable list
 
@@ -245,7 +245,7 @@ func(1, 2, 3, 4)
 
 >a b c d= 1 2 3 4
 
-#### (2) passed by parameter name
+#### (2) Name pass
 
 The formal parameter is matched with the variable by name
 
@@ -271,16 +271,106 @@ func(4)
 
 >a b c d= 4 2 3 4
 
-#### (4) Mixed pass
+#### (4) Variable parameter (可变参数)
 
-Pass by position, by name and use default pass at the same time is valid
+Function can receive more than formal parameter list
 
-Should obey the **rules:**
+```python
+def f(*c,**d)
+```
 
-+ pass by position is priority
-+ then pass by name
-+ use default pass at last
-+ name pass mustn't behind 
+**```*c```** will receive the variable beyond the formal parameter list, and pass it to the function by tuple
+**```**d```** will receive the variable with name like **```x=10```**, and pass by dictionary
+
+```python
+{
+def f(a, b, *c, **d):
+    print("formal:", a, b, "variable tuple:", c, "named variable:", d)
+
+
+f(1, 2, 3, 'a', [2, 3], {"key1": 1, "key2": 2}, x=3, h=7)
+}
+```
+
+>formal: 1 2 variable tuple: (3, 'a', [2, 3], {'key1': 1, 'key2': 2}) named variable: {'x': 3, 'h': 7}
+
+***named variable is not dictionary, dictionary is an object***
+
+#### (5) Hybrid pass
+
+Use position_pass, name_pass, Default pass and Variable parameter at the same time is valid
+
+##### The priority
+
++ position_pass **>** name_pass **>** Default_pass **>** Variable parameter ( tuple ) **>** Variable parameter ( dictionary )
++ formal parameter list obeys the same rule
+  
+```python
+{
+def hybrid_func(a, b=1, *c, **d):
+    print("formal:", a, b, "variable tuple:", c, "named variable:", d)
+
+
+hybrid_func(1, 3, 'a', [2, 3], {"key1": 1, "key2": 2}, x=3, h=7)
+}
+```
+
+>formal: 1 3 variable tuple: ('a', [2, 3], {'key1': 1, 'key2': 2}) named variable: {'x': 3, 'h': 7}
+
+##### *Avoid repetition*
+
+```python
+hybrid_func(1, 2, a=3)
+```
+
+By position_pass a = 1, but a is given the value 3 by name_pass
+
+>TypeError: hybrid_func() got multiple values for argument 'a'
+
+**In fact, name_pass and variable ( tuple ) can't exist at the same time. Because name_pass should before variable parameter, but there mustn't be no_name_variable after name_pass, so nothing will pass to variable tuple.**
+
+```python
+{
+def f(a, b=1,c=2,*d):
+    print(a, b, c, d)
+}
+```
+
+*Sometimes we cannot pass value to **```c```** if skip over **```b```** by name_pass and pass value to **```*d```** at the same time:*
+
+**Want:**```1 1 99 (4,5,6)``` (variable list should skip over ```b```)
+
+```python
+f(1, c=99, (4, 5, 6))
+```
+
+>SyntaxError: positional argument follows keyword argument
+
+```python
+f(1, (4, 5, 6), c=99)
+```
+
+>1 (4, 5, 6) 99 () ------```b``` is changed
+
+##### pass tuple to *x or dict to **y
+
+Just use * or ** before tuple or dict as variable, tuple will pass like each variable, and dict will pass like each named variable
+
+*~~But why not just use tuple and dict as objects~~*
+
+```python
+{
+def f(a, b=1, c=2, *d, **e):
+    print(a, b, c, d, e)
+
+
+t1 = (1, 2, 3, 4, 5)
+k1 = {"key1": 1, "key2": 2, "key3": 3}
+f(*t1, 9, 8, 7, **k1, x=2)
+}
+```
+
+>1 2 3 (4, 5, 9, 8, 7) {'key1': 1, 'key2': 2, 'key3': 3, 'x': 2}
 
 ### 6.2.4 Sequence derivation based on function
 
@@ -305,7 +395,6 @@ print(new_list)
 #### (2) tuple derivation
 
 Generate a tuple by derivation
-
 
 ```python
 {
@@ -352,4 +441,3 @@ print(new_dict)
 ```
 
 >{'value1': 1, 'value2': 2, 'value3': 3, 'value4': 4}
-

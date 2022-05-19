@@ -95,9 +95,44 @@
 # new_dict = {f(x): x for x in list0}
 # print(new_dict)
 
-def func(a, b=2, c=3, d=4):
-    print("a b c d=", a, b, c, d)
+# def func(a, b=2, c=3, d=4):
+#     print("a b c d=", a, b, c, d)
 
 
-func(4)
+# func(4)
 
+# def hybrid_func(a, b, c=3, d=4, e=5, f=6, g=7, h=8, i=9, j=10):
+#     print("list:", a, b, c, d, e, f, g, h, i, j)
+
+
+# hybrid_func(1, 2, a=3)
+
+
+# def variable_func(*a, **k):
+#     print(a, k)
+
+
+# a1 = (1, 2, 3)
+# k1 = {"key1": 1, "key2": 2, "key3": 3}
+# variable_func(*a1, **k1)
+
+
+# def hybrid_func(a, b=1, *c, **d):
+#     print("formal:", a, b, "variable tuple:", c, "named variable:", d)
+
+
+# hybrid_func(1, 3, 'a', [2, 3], {"key1": 1, "key2": 2}, x=3, h=7)
+
+# def f(a, b=1, c=2, *d, **e):
+#     print(a, b, c, d, e)
+
+
+# t1 = (1, 2, 3, 4, 5)
+# k1 = {"key1": 1, "key2": 2, "key3": 3}
+# f(*t1, 9, 8, 7, **k1, x=2)
+
+# def f(a, b=1, c=2, *d):
+#     print(a, b, c, d)
+
+
+# f(1, (4, 5, 6), c=99)
