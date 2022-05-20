@@ -271,7 +271,7 @@ func(4)
 
 >a b c d= 4 2 3 4
 
-#### (4) Variable parameter (可变参数)
+#### (4) Variable parameter (鍙彉鍙傛暟)
 
 Function can receive more than formal parameter list
 
@@ -418,7 +418,7 @@ print(type(new_tuple))
 
 #### (3) set derivation
 
-Generate a sey by derivation
+Generate a set by derivation
 
 ```python
 {
