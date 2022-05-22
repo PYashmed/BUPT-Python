@@ -56,7 +56,54 @@ Like: `a+bj`
 |    11    | `<<` `>>`        | `a<<b=a*2b` `a>>b=a//2b`            |
 |    10    | `&`              | `1&1=1` `0&x=0`                     |
 |    9     | `^`              | `0^1=1` `1^0=1` `0^0=0` `1^1-0`     |
-|    8     | `|`              | `0 | 0=0` `1 | x=1` |
+|    8     | `                | `                                   | `0 | 0=0` `1 | x=1` |
 
 ### 3.1.5 number variable
+
+numerical object is **immutable**, two variable with the same value point to the same address
+
+```python
+a = 1
+b = 1
+print(id(a), id(b))
+```
+
+>2858153830704 2858153830704
+
+variable is an index, point to the object's address, if give the variable a new value, the address the variable pointed to will change
+
+```python
+a = 1
+print(id(a))
+a = 2
+print(id(a))
+```
+
+>2237494618416
+2237494618448
+
+### 3.1.6 basic numerical function
+
+#### (1) int()
+
+Convert **`int`** **`float`** **`str(int)`** to **`int`**
+`Float` is converted to `int` by discarding the decimal part
+
+```python
+print(type(int(10)), type(int(10.3)), type(int("101")))
+```
+
+>\<class 'int'> \<class 'int'> \<class 'int'>
+
+```python
+print(type(int('A')))
+print(type(int(1+2j)))
+```
+
+>ValueError: invalid literal for int() with base 10: 'A'
+TypeError: can't convert complex to int
+
+#### (2) float()
+
+Convert **`int`** **`float`** **`str(float)`** to **`float`**
 
