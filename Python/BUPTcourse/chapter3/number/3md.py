@@ -15,4 +15,4 @@
 
 # print(type(int(10)), type(int(10.3)), type(int("101")))
 
-print(type(int(1+2j)))
+# print(type(int(1+2j)))
