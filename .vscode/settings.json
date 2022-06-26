@@ -74,8 +74,16 @@
         "valarray": "cpp"
     },
     "cSpell.words": [
+        "copyfile",
+        "listdir",
+        "makedirs",
+        "mkdir",
         "readline",
         "readlines",
+        "removedirs",
+        "shutil",
+        "splitext",
+        "writeline",
         "writelines",
         "Yashmed"
     ]
